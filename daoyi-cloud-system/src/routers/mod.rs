@@ -2,12 +2,11 @@ use daoyi_cloud_config::common_config;
 use rust_embed::RustEmbed;
 use salvo::prelude::*;
 use salvo::serve_static::{EmbeddedFileExt, static_embed};
+use daoyi_cloud_hoops::hoops;
 
 mod auth;
 mod demo;
 mod user;
-
-use crate::hoops;
 
 #[derive(RustEmbed)]
 #[folder = "assets"]
@@ -27,7 +26,7 @@ pub fn root() -> Router {
                 .push(Router::with_path("login").post(auth::post_login))
                 .push(
                     Router::with_path("users")
-                        .hoop(hoops::auth_hoop(&common_config::get().jwt))
+                        .hoop(hoops::demo::auth_hoop(&common_config::get().jwt))
                         .get(user::list_users)
                         .post(user::create_user)
                         .push(

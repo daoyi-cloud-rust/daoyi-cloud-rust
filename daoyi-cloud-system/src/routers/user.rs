@@ -1,4 +1,3 @@
-use crate::hoops::jwt;
 use askama::Template;
 use daoyi_cloud_db::db;
 use salvo::oapi::extract::*;
@@ -12,6 +11,7 @@ use validator::Validate;
 
 use crate::{AppResult, EmptyResult, JsonResult, empty_ok, json_ok};
 use daoyi_cloud_entity::entities::demo::{prelude::Users, users};
+use daoyi_cloud_hoops::hoops::demo::jwt;
 use daoyi_cloud_models::models::SafeUser;
 use daoyi_cloud_utils::utils;
 

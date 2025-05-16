@@ -7,10 +7,10 @@ use salvo::prelude::*;
 use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 use serde::{Deserialize, Serialize};
 
-use crate::hoops::jwt;
 use crate::{AppResult, JsonResult, json_ok};
 use daoyi_cloud_entity::entities::demo::users::Model;
 use daoyi_cloud_entity::entities::demo::{prelude::Users, users};
+use daoyi_cloud_hoops::hoops::demo::jwt;
 
 #[handler]
 pub async fn login_page(res: &mut Response) -> AppResult<()> {
