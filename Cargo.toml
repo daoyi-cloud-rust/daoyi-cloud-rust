@@ -7,7 +7,8 @@ members = [
     "daoyi-cloud-hoops",
     "daoyi-cloud-models",
     "daoyi-cloud-system",
-    "daoyi-cloud-utils"]
+    "daoyi-cloud-utils"
+]
 
 [workspace.package]
 authors = ["Gemiman <gemiman@vip.qq.com>"]
