@@ -6,8 +6,8 @@ use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 use serde::{Deserialize, Serialize};
 use daoyi_cloud_db::db;
 
-use crate::entities::users::Model;
-use crate::entities::{prelude::Users, users};
+use daoyi_cloud_entity::entities::demo::users::Model;
+use daoyi_cloud_entity::entities::demo::{prelude::Users, users};
 use crate::hoops::jwt;
 use crate::{json_ok, utils, AppResult, JsonResult};
 

@@ -35,3 +35,4 @@ askama = "0.14.0"
 rand = "0.9.1"
 daoyi-cloud-config = { path = "daoyi-cloud-config" }
 daoyi-cloud-db = { path = "daoyi-cloud-db" }
+daoyi-cloud-entity = { path = "daoyi-cloud-entity" }

@@ -8,7 +8,6 @@ use tokio::signal;
 use tracing::info;
 
 mod app_config;
-mod entities;
 mod hoops;
 mod models;
 mod routers;

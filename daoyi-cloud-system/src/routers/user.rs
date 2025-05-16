@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 use ulid::Ulid;
 use validator::Validate;
 
-use crate::entities::{prelude::Users, users};
+use daoyi_cloud_entity::entities::demo::{prelude::Users, users};
 use crate::models::SafeUser;
 use crate::{AppResult, EmptyResult, JsonResult, empty_ok, json_ok, utils};
 
