@@ -9,7 +9,6 @@ use tracing::info;
 
 mod app_config;
 mod hoops;
-mod models;
 mod routers;
 mod utils;
 

@@ -29,3 +29,4 @@ rand = { workspace = true }
 daoyi-cloud-config = { workspace = true }
 daoyi-cloud-db = { workspace = true }
 daoyi-cloud-entity = { workspace = true }
+daoyi-cloud-models = { workspace = true }

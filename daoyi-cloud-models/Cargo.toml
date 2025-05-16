@@ -10,3 +10,5 @@ version.workspace = true
 repository.workspace = true
 
 [dependencies]
+salvo = { workspace = true }
+serde = { workspace = true }

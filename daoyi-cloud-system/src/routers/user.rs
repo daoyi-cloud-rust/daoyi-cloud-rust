@@ -11,7 +11,7 @@ use ulid::Ulid;
 use validator::Validate;
 
 use daoyi_cloud_entity::entities::demo::{prelude::Users, users};
-use crate::models::SafeUser;
+use daoyi_cloud_models::models::SafeUser;
 use crate::{AppResult, EmptyResult, JsonResult, empty_ok, json_ok, utils};
 
 #[derive(Template)]
