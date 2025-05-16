@@ -10,9 +10,10 @@ use serde::{Deserialize, Serialize};
 use ulid::Ulid;
 use validator::Validate;
 
+use crate::{AppResult, EmptyResult, JsonResult, empty_ok, json_ok};
 use daoyi_cloud_entity::entities::demo::{prelude::Users, users};
 use daoyi_cloud_models::models::SafeUser;
-use crate::{AppResult, EmptyResult, JsonResult, empty_ok, json_ok, utils};
+use daoyi_cloud_utils::utils;
 
 #[derive(Template)]
 #[template(path = "user_list_page.html")]

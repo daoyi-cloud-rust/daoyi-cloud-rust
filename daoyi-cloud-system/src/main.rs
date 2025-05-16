@@ -10,8 +10,6 @@ use tracing::info;
 mod app_config;
 mod hoops;
 mod routers;
-mod utils;
-
 mod error;
 pub use error::AppError;
 
