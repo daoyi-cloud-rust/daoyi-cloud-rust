@@ -3,3 +3,4 @@
 /target/
 **/*-prod.toml
 **/*-local.toml
+/logs/
