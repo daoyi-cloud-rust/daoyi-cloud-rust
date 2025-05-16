@@ -1,0 +1,36 @@
+[workspace]
+resolver = "3"
+members = ["daoyi-cloud-config", "daoyi-cloud-db", "daoyi-cloud-entity", "daoyi-cloud-hoops", "daoyi-cloud-models", "daoyi-cloud-routers", "daoyi-cloud-system", "daoyi-cloud-utils"]
+
+[workspace.package]
+authors = ["Gemiman <gemiman@vip.qq.com>"]
+edition = "2024"
+homepage = "https://www.gemiman.com/"
+license = "MIT"
+publish = false
+rust-version = "1.86.0"
+version = "0.1.0"
+repository = "https://github.com/daoyi-cloud-rust/daoyi-cloud-rust"
+
+[workspace.dependencies]
+anyhow = "1.0.98"
+figment = { version = "0.10.19", features = ["env", "toml"] }
+jsonwebtoken = "9.3.1"
+rust-embed = "8.7.2"
+salvo = { version = "0.78.0", features = ["full"] }
+serde = { version = "1.0.219", features = ["derive"] }
+thiserror = "2.0.12"
+time = "0.3.41"
+tokio = { version = "1.45.0", features = ["full"] }
+tracing = "0.1.41"
+validator = { version = "0.20.0", features = ["derive"] }
+ulid = "1.2.1"
+argon2 = "0.5.3"
+cookie = "0.18.1"
+dotenvy = "0.15.7"
+tracing-appender = "0.2.3"
+tracing-subscriber = { version = "0.3.19", features = ["std", "fmt", "env-filter", "tracing-log", "time", "local-time", "json"] }
+sea-orm = { version = "1.1.11", features = ["runtime-tokio-native-tls", "sqlx-mysql"] }
+askama = "0.14.0"
+rand = "0.9.1"
+daoyi-cloud-config = { path = "daoyi-cloud-config" }
