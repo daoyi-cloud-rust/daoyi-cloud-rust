@@ -10,3 +10,5 @@ version.workspace = true
 repository.workspace = true
 
 [dependencies]
+daoyi-cloud-config = { workspace = true }
+sea-orm = {workspace = true}

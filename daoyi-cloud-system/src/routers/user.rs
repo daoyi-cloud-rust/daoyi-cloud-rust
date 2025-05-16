@@ -1,15 +1,18 @@
+use crate::hoops::jwt;
 use askama::Template;
+use daoyi_cloud_db::db;
 use salvo::oapi::extract::*;
 use salvo::prelude::*;
-use sea_orm::{ActiveModelTrait, EntityTrait, Set, QueryFilter, QuerySelect, ColumnTrait, PaginatorTrait};
+use sea_orm::{
+    ActiveModelTrait, ColumnTrait, EntityTrait, PaginatorTrait, QueryFilter, QuerySelect, Set,
+};
 use serde::{Deserialize, Serialize};
 use ulid::Ulid;
 use validator::Validate;
-use crate::hoops::jwt;
 
 use crate::entities::{prelude::Users, users};
 use crate::models::SafeUser;
-use crate::{db, empty_ok, json_ok, utils, AppResult, EmptyResult, JsonResult};
+use crate::{AppResult, EmptyResult, JsonResult, empty_ok, json_ok, utils};
 
 #[derive(Template)]
 #[template(path = "user_list_page.html")]
@@ -112,8 +115,12 @@ pub struct UserListQuery {
     pub page_size: u64,
 }
 
-fn default_page() -> u64 { 1 }
-fn default_page_size() -> u64 { 10 }
+fn default_page() -> u64 {
+    1
+}
+fn default_page_size() -> u64 {
+    10
+}
 
 #[derive(Debug, Serialize, ToSchema)]
 pub struct UserListResponse {
@@ -127,17 +134,17 @@ pub struct UserListResponse {
 pub async fn list_users(query: &mut Request) -> JsonResult<UserListResponse> {
     let query: UserListQuery = query.extract().await?;
     let conn = db::pool();
-    
+
     let mut select = Users::find();
-    
+
     // Apply username filter if provided
     if let Some(username) = query.username.as_ref() {
         select = select.filter(users::Column::Username.contains(username));
     }
-    
+
     // Get total count
     let total = select.clone().count(conn).await?;
-    
+
     // Apply pagination
     let users = select
         .offset(((query.current_page - 1) * query.page_size) as u64)
@@ -150,7 +157,7 @@ pub async fn list_users(query: &mut Request) -> JsonResult<UserListResponse> {
             username: user.username,
         })
         .collect::<Vec<_>>();
-    
+
     json_ok(UserListResponse {
         data: users,
         total,

@@ -4,11 +4,12 @@ use salvo::oapi::extract::*;
 use salvo::prelude::*;
 use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 use serde::{Deserialize, Serialize};
+use daoyi_cloud_db::db;
 
 use crate::entities::users::Model;
 use crate::entities::{prelude::Users, users};
 use crate::hoops::jwt;
-use crate::{db, json_ok, utils, AppResult, JsonResult};
+use crate::{json_ok, utils, AppResult, JsonResult};
 
 #[handler]
 pub async fn login_page(res: &mut Response) -> AppResult<()> {

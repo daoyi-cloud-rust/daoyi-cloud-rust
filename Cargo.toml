@@ -8,7 +8,7 @@ edition = "2024"
 homepage = "https://www.gemiman.com/"
 license = "MIT"
 publish = false
-rust-version = "1.86.0"
+rust-version = "1.87.0"
 version = "0.1.0"
 repository = "https://github.com/daoyi-cloud-rust/daoyi-cloud-rust"
 
@@ -34,3 +34,4 @@ sea-orm = { version = "1.1.11", features = ["runtime-tokio-native-tls", "sqlx-my
 askama = "0.14.0"
 rand = "0.9.1"
 daoyi-cloud-config = { path = "daoyi-cloud-config" }
+daoyi-cloud-db = { path = "daoyi-cloud-db" }

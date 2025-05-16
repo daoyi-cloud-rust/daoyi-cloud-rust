@@ -27,3 +27,4 @@ sea-orm = { workspace = true }
 askama = { workspace = true }
 rand = { workspace = true }
 daoyi-cloud-config = { workspace = true }
+daoyi-cloud-db = { workspace = true }

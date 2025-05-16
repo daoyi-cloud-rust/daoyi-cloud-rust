@@ -1,4 +1,4 @@
-use crate::db;
+use daoyi_cloud_db::db;
 use daoyi_cloud_config::common_config::{self, profile_config::ProfileConfig};
 use figment::Figment;
 use figment::providers::{Env, Format, Toml};
