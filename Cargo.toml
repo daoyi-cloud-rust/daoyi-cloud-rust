@@ -1,6 +1,13 @@
 [workspace]
 resolver = "3"
-members = ["daoyi-cloud-config", "daoyi-cloud-db", "daoyi-cloud-entity", "daoyi-cloud-hoops", "daoyi-cloud-models", "daoyi-cloud-routers", "daoyi-cloud-system", "daoyi-cloud-utils"]
+members = [
+    "daoyi-cloud-config",
+    "daoyi-cloud-db",
+    "daoyi-cloud-entity",
+    "daoyi-cloud-hoops",
+    "daoyi-cloud-models",
+    "daoyi-cloud-system",
+    "daoyi-cloud-utils"]
 
 [workspace.package]
 authors = ["Gemiman <gemiman@vip.qq.com>"]
@@ -38,5 +45,4 @@ daoyi-cloud-db = { path = "daoyi-cloud-db" }
 daoyi-cloud-entity = { path = "daoyi-cloud-entity" }
 daoyi-cloud-hoops = { path = "daoyi-cloud-hoops" }
 daoyi-cloud-models = { path = "daoyi-cloud-models" }
-daoyi-cloud-routers = { path = "daoyi-cloud-routers" }
 daoyi-cloud-utils = { path = "daoyi-cloud-utils" }
