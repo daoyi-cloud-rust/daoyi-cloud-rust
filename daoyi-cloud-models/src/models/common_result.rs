@@ -2,7 +2,7 @@ use salvo::oapi;
 use salvo::prelude::*;
 use serde::Serialize;
 /// 通用返回结果
-#[derive(Serialize, Clone, Debug)]
+#[derive(Serialize, Clone, Debug, ToSchema)]
 pub struct CommonResult<T> {
     /// 返回码
     pub code: i32,
@@ -13,11 +13,19 @@ pub struct CommonResult<T> {
 }
 
 impl<T> CommonResult<T> {
-    pub fn ok(data: Option<T>) -> Self {
+    pub fn ok(data: T) -> Self {
         Self {
             code: 0,
             msg: "success".to_string(),
-            data,
+            data: Some(data),
+        }
+    }
+
+    pub fn status_error(err: StatusError) -> Self {
+        Self {
+            code: err.code.as_u16().to_string().parse().unwrap(),
+            msg: err.brief,
+            data: None,
         }
     }
 

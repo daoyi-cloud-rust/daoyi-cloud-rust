@@ -11,6 +11,7 @@ use crate::{AppResult, JsonResult, json_ok};
 use daoyi_cloud_entity::entities::demo::users::Model;
 use daoyi_cloud_entity::entities::demo::{prelude::Users, users};
 use daoyi_cloud_hoops::hoops::demo::jwt;
+use daoyi_cloud_models::models::common_result::CommonResult;
 
 #[handler]
 pub async fn login_page(res: &mut Response) -> AppResult<()> {
@@ -45,40 +46,53 @@ pub struct LoginOutData {
 pub async fn post_login(
     idata: JsonBody<LoginInData>,
     res: &mut Response,
-) -> JsonResult<LoginOutData> {
+) -> CommonResult<LoginOutData> {
     let idata = idata.into_inner();
     let conn = db::pool();
-    let Some(Model {
-        id,
-        username,
-        password,
-    }) = Users::find()
+    if let Ok(db_res) = Users::find()
         .filter(users::Column::Username.eq(idata.username))
         .one(conn)
-        .await?
-    else {
-        return Err(StatusError::unauthorized()
-            .brief("User does not exist.")
-            .into());
-    };
+        .await
+    {
+        if let Some(Model {
+            id,
+            username,
+            password,
+        }) = db_res
+        {
+            if utils::verify_password(&idata.password, &password).is_err() {
+                return CommonResult::status_error(
+                    StatusError::unauthorized()
+                        .brief("Addount not exist or password is incorrect.")
+                        .into(),
+                );
+            }
 
-    if utils::verify_password(&idata.password, &password).is_err() {
-        return Err(StatusError::unauthorized()
-            .brief("Addount not exist or password is incorrect.")
-            .into());
+            let (token, exp) = jwt::get_token(&id).unwrap();
+            let odata = LoginOutData {
+                id,
+                username,
+                token,
+                exp,
+            };
+            let cookie = Cookie::build(("jwt_token", odata.token.clone()))
+                .path("/")
+                .http_only(true)
+                .build();
+            res.add_cookie(cookie);
+            CommonResult::ok(odata)
+        } else {
+            CommonResult::status_error(
+                StatusError::unauthorized()
+                    .brief("User does not exist.")
+                    .into(),
+            )
+        }
+    } else {
+        CommonResult::status_error(
+            StatusError::unauthorized()
+                .brief("User does not exist.")
+                .into(),
+        )
     }
-
-    let (token, exp) = jwt::get_token(&id)?;
-    let odata = LoginOutData {
-        id,
-        username,
-        token,
-        exp,
-    };
-    let cookie = Cookie::build(("jwt_token", odata.token.clone()))
-        .path("/")
-        .http_only(true)
-        .build();
-    res.add_cookie(cookie);
-    json_ok(odata)
 }
