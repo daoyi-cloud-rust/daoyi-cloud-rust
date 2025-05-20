@@ -17,3 +17,4 @@ jsonwebtoken = { workspace = true }
 serde = { workspace = true }
 time = { workspace = true }
 anyhow = { workspace = true }
+daoyi-cloud-models = { workspace = true }

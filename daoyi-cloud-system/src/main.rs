@@ -32,7 +32,7 @@ async fn main() {
     let config = common_config::get();
 
     let service = Service::new(routers::root())
-        .catcher(Catcher::default().hoop(hoops::demo::error_404))
+        .catcher(Catcher::default().hoop(hoops::error_handler::error_handler))
         .hoop(hoops::demo::cors_hoop());
     println!("🔄 在以下位置监听 {}", &config.listen_addr);
     //Acme 支持，自动从 Let's Encrypt 获取 TLS 证书。例子请看 https://github.com/salvo-rs/salvo/blob/main/examples/acme-http01-quinn/src/main.rs
