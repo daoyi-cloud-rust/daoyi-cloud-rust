@@ -9,7 +9,7 @@ pub struct CommonResult<T> {
     /// 返回信息
     pub msg: String,
     /// 返回数据
-    pub data: Option<T>,
+    pub data: Option<T>,    
 }
 
 impl<T> CommonResult<T> {
