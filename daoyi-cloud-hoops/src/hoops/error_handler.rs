@@ -13,12 +13,11 @@ pub async fn error_handler(&self, res: &mut Response, ctrl: &mut FlowCtrl) {
     let err_info = if let ResBody::Error(e) = &res.body {
         e.brief.clone()
     } else {
-        "Unknown error happened.".to_string()
+        StatusCode::try_from(err_code.to_string().parse::<u16>().unwrap_or(500))
+            .unwrap_or(StatusCode::INTERNAL_SERVER_ERROR)
+            .to_string()
     };
     res.status_code(StatusCode::OK);
-    res.render(Json(CommonResult::<String>::err(
-        err_code,
-        err_info,
-    )));
+    res.render(Json(CommonResult::<String>::err(err_code, err_info)));
     ctrl.skip_rest();
 }
